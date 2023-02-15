@@ -9,11 +9,14 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
-@Builder
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Nino {
 	@Id
