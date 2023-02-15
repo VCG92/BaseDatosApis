@@ -8,12 +8,20 @@ import lombok.NonNull;
 
 @Entity
 @Data
-@Builder
 public class Primaria extends Nino{
 
 
 	@ManyToOne
 	private Cabana cabana;
+
+	public Primaria(@NonNull String nombre, Cabana cabana) {
+		super(nombre);
+		this.cabana = cabana;
+	}
+
+	public Primaria(@NonNull String nombre) {
+		super(nombre);
+	}
 
 	
 	

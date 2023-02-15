@@ -9,11 +9,21 @@ import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
-@Builder
 public class Eso extends Nino{
 
 	@ManyToOne
 	private Tienda tienda;
+
+	public Eso(@NonNull String nombre, Tienda tienda) {
+		super(nombre);
+		this.tienda = tienda;
+	}
+
+	public Eso(@NonNull String nombre) {
+		super(nombre);
+	}
+	
+	
 
 	
 	

@@ -10,11 +10,24 @@ import lombok.NonNull;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Tienda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NonNull
     private String nombre;
+    
+    
+	public Tienda(@NonNull String nombre) {
+		super();
+		this.nombre = nombre;
+	}
+
+
+	public Tienda() {
+		super();
+	}
+    
+	
+    
 }
