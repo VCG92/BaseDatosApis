@@ -33,8 +33,8 @@ class Jpah2Ternaria2307ApplicationTests {
 	private MonitorRepository monitorRepository;
 	@Autowired
 	private ActividadGrupoMonitorRepository actividadGrupoMonitorRepository;
-	@Autowired
-	private NinoRepository ninoRepository;
+//	@Autowired
+//	private NinoRepository ninoRepository;
 	@Autowired
 	private EsoRepository esoRepository;
 	@Autowired
@@ -64,12 +64,12 @@ class Jpah2Ternaria2307ApplicationTests {
 		Cabana cabana = new Cabana("Cabana 1");
 		Cabana cabana2 = new Cabana("Cabana 2");
 		Cabana cabana3 = new Cabana("Cabana 3");
-		Eso eso = new Eso("nino eso 1", tienda);
-		Eso eso2 = new Eso("nino eso 2", tienda2);
-		Eso eso3 = new Eso("nino eso 3", tienda3);
-		Primaria primaria=new Primaria("nino primaria 1", cabana);
-		Primaria primaria2=new Primaria("nino primaria 2", cabana);
-		Primaria primaria3=new Primaria("nino primaria 3", cabana);
+		Eso eso = new Eso("nino eso 1", tienda,grupo);
+		Eso eso2 = new Eso("nino eso 2", tienda2,grupo2);
+		Eso eso3 = new Eso("nino eso 3", tienda3,grupo3);
+		Primaria primaria=new Primaria("nino primaria 1", cabana,grupo);
+		Primaria primaria2=new Primaria("nino primaria 2", cabana2,grupo2);
+		Primaria primaria3=new Primaria("nino primaria 3", cabana3,grupo3);
 		actividadRepository.save(actividad);
 		actividadRepository.save(actividad2);
 		actividadRepository.save(actividad3);

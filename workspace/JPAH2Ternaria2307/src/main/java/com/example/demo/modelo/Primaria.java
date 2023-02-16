@@ -14,8 +14,8 @@ public class Primaria extends Nino{
 	@ManyToOne
 	private Cabana cabana;
 
-	public Primaria(@NonNull String nombre, Cabana cabana) {
-		super(nombre);
+	public Primaria(@NonNull String nombre, Cabana cabana,Grupo grupo) {
+		super(nombre,grupo);
 		this.cabana = cabana;
 	}
 

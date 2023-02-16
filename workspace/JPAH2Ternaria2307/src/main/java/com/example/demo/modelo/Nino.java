@@ -25,4 +25,14 @@ public abstract class Nino {
 	private String nombre;
 	@ManyToOne
 	private Grupo grupo;
+	
+	
+	public Nino(@NonNull String nombre, Grupo grupo) {
+		super();
+		this.nombre = nombre;
+		this.grupo = grupo;
+	}
+	
+	
+	
 }
