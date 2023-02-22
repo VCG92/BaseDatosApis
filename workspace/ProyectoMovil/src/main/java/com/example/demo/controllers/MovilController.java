@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,7 +46,7 @@ public class MovilController {
 	}
 	
 	
-	@PostMapping("/PutMovil")
+	@PutMapping("/PutMovil")
 	public ResponseEntity<MovilModel> modificarMovil(@RequestBody MovilModel movil) {
 		MovilModel actualizarMoviles = this.impl.modificarMovil(movil);
 		return new ResponseEntity<MovilModel>(actualizarMoviles,HttpStatus.ACCEPTED);
