@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.models.MarcaModel;
 import com.example.demo.models.MovilModel;
 import com.example.demo.models.MovilModelDTO;
 import com.example.demo.repositories.MovilRepositoy;
+import com.example.demo.services.MovilService;
 @Service
 public class MovilServiceImpl{
 	
@@ -57,5 +59,24 @@ public class MovilServiceImpl{
 		}
 		return dtos;
 	}
+	
+	public List<MovilModelDTO> buscarMoviles(String nombreMarca, float precioMinimo, float precioMaximo,
+            int ramMinima, int ramMaxima, boolean tieneNFC, String tecnologiaPantalla){
+		        List<MovilModel> moviles = movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia(nombreMarca, precioMinimo, precioMaximo, ramMinima, ramMaxima, tieneNFC, tecnologiaPantalla);
+		        List<MovilModelDTO> movilesDTO = new ArrayList<>();
+		        for (MovilModel movil : moviles) {
+		            movilesDTO.add(movil.movilDTO());
+		        }
+		        return movilesDTO;
+		    }
 
-}
+
+//	@Override
+//	public List<MovilModelDTO> buscarMoviles(String nombreMarca, Double precioMinimo, Double precioMaximo,
+//			Integer ramMinima, Integer ramMaxima, Boolean tieneNFC, String tecnologiaPantalla) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+	}
+
+

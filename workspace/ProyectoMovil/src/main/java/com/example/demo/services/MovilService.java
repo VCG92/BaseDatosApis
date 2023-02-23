@@ -21,5 +21,7 @@ public List<MovilModel> consultarMoviles();
 	public List<MovilModel> obtenerMovilPorMarcaNombre(String marca);
 	
 	public List<MovilModelDTO> convertirAMovilDTO(List<MovilModel> moviles);
-
+	
+	public List<MovilModelDTO> buscarMoviles(String nombreMarca, Double precioMinimo, Double precioMaximo,
+            Integer ramMinima, Integer ramMaxima, Boolean tieneNFC, String tecnologiaPantalla);
 }

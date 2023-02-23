@@ -16,5 +16,6 @@ public interface MovilRepositoy extends CrudRepository<MovilModel, String>{
 	public abstract List<MovilModel> findByRamBetween(int precioMin, int precioMax);
 	public abstract List<MovilModel> findByNfc(boolean nfc);
 	public abstract List<MovilModel> findByPantallaTecnologia(String tecnologia);
+	public abstract List<MovilModel> findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia(String nombreMarca,float precioMin, float precioMax, int ramMin, int ramMax, boolean nfc,String tecnologiaPantalla);
 
 }
