@@ -60,6 +60,10 @@ public class MovilModel {
 		this.precio = precio;
 		this.fecha_lanzamiento = fecha_lanzamiento;
 	}
+	
+	public MovilModelDTO movilDTO() {
+		return new MovilModelDTO(modelo, marca.getNombre(),procesador.getNucleos(), ram, almacenamiento, precio);
+	}
 
 	public String getModelo() {
 		return modelo;

@@ -1,11 +1,13 @@
 package com.example.demo.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.MovilModel;
+import com.example.demo.models.MovilModelDTO;
 import com.example.demo.repositories.MovilRepositoy;
 @Service
 public class MovilServiceImpl{
@@ -45,5 +47,14 @@ public class MovilServiceImpl{
 	public List<MovilModel> obtenerMovilPorMarcaNombre(String marca){
 		return movilRepositoy.findByMarcaNombre(marca);
 	}
+	
+	public List<MovilModelDTO> convertirAMovilDTO(List<MovilModel> moviles) {
+        List<MovilModelDTO> dtos = new ArrayList<MovilModelDTO>();
+        for (MovilModel movil : moviles) {
+        	MovilModelDTO dto = movil.movilDTO();
+            dtos.add(dto);
+        }
+        return dtos;
+    }
 
 }
