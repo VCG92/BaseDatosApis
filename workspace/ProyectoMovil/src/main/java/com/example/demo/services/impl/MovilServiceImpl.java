@@ -62,7 +62,8 @@ public class MovilServiceImpl{
 	
 	public List<MovilModelDTO> buscarMoviles(String nombreMarca, float precioMinimo, float precioMaximo,
             int ramMinima, int ramMaxima, boolean tieneNFC, String tecnologiaPantalla){
-		        List<MovilModel> moviles = movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia(nombreMarca, precioMinimo, precioMaximo, ramMinima, ramMaxima, tieneNFC, tecnologiaPantalla);
+		        List<MovilModel> moviles = movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia
+		        		(nombreMarca, precioMinimo, precioMaximo, ramMinima, ramMaxima, tieneNFC, tecnologiaPantalla);
 		        List<MovilModelDTO> movilesDTO = new ArrayList<>();
 		        for (MovilModel movil : moviles) {
 		            movilesDTO.add(movil.movilDTO());
@@ -70,13 +71,10 @@ public class MovilServiceImpl{
 		        return movilesDTO;
 		    }
 
-
-//	@Override
-//	public List<MovilModelDTO> buscarMoviles(String nombreMarca, Double precioMinimo, Double precioMaximo,
-//			Integer ramMinima, Integer ramMaxima, Boolean tieneNFC, String tecnologiaPantalla) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	public List<MovilModel> obtenerMovilesPorModelo(List<String> modelo){
+		return movilRepositoy.findByModeloIn(modelo);
+	}
+	
 	}
 
 

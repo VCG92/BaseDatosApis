@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,14 +80,15 @@ public class MovilController {
 	
 	@GetMapping("/filtrar")
     public ResponseEntity<List<MovilModelDTO>> buscarMoviles(
-    		@RequestParam(required = false) String nombreMarca,
-    		@RequestParam(required = false , defaultValue = "0") Float precioMinimo,
-    		@RequestParam(required = false) Float precioMaximo,
-    		@RequestParam(required = false) Integer ramMinima,
-    		@RequestParam(required = false) Integer ramMaxima,
-    		@RequestParam(required = false) boolean tieneNFC,
-    		@RequestParam(required = false) String tecnologiaPantalla) {
-        List<MovilModelDTO> moviles = this.impl.buscarMoviles(nombreMarca, precioMinimo, precioMaximo, ramMinima, ramMaxima, tieneNFC, tecnologiaPantalla);
+    		@RequestParam(name = "marca",required = false) String nombreMarca,
+    		@RequestParam(name = "precioMin",required = false , defaultValue = "0") Float precioMinimo,
+    		@RequestParam(name = "precioMax",required = false) Float precioMaximo,
+    		@RequestParam(name = "ramMin",required = false) Integer ramMinima,
+    		@RequestParam(name = "ramMax",required = false) Integer ramMaxima,
+    		@RequestParam(name = "nfc",required = false) boolean tieneNFC,
+    		@RequestParam(name = "tecnologia",required = false) String tecnologiaPantalla) {
+        List<MovilModelDTO> moviles = this.impl.buscarMoviles
+        		(nombreMarca, precioMinimo, precioMaximo, ramMinima, ramMaxima, tieneNFC, tecnologiaPantalla);
         if (!moviles.isEmpty()) {
             return ResponseEntity.ok(moviles);
         } else {
@@ -94,26 +96,15 @@ public class MovilController {
         }
     }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@GetMapping("/comparar/{modelo1}-{modelo2}")
+	public ResponseEntity<List<MovilModel>>obtenerMovilesPorModelo(@PathVariable("modelo1")String modelo1,@PathVariable("modelo2")String modelo2){
+		List<String> modelos = new ArrayList<>();
+		modelos.add(modelo1);
+		modelos.add(modelo2);
+		List<MovilModel> moviles = this.impl.obtenerMovilesPorModelo(modelos);
+		return new ResponseEntity<>(moviles,HttpStatus.OK);
+		
+	}
 	
 	
 	
