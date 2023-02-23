@@ -3,10 +3,11 @@ package com.example.demo.services;
 import java.util.List;
 
 import com.example.demo.models.MovilModel;
+import com.example.demo.models.MovilModelDTO;
 
 public interface MovilService {
 	
-	public List<MovilModel> consultarMoviles();
+public List<MovilModel> consultarMoviles();
 	
 	public MovilModel crearMovil(MovilModel movil);
 	
@@ -18,5 +19,7 @@ public interface MovilService {
 	
 	public List<MovilModel> obtenerMovilPorCamara(int camara);
 	public List<MovilModel> obtenerMovilPorMarcaNombre(String marca);
+	
+	public List<MovilModelDTO> convertirAMovilDTO(List<MovilModel> moviles);
 
 }

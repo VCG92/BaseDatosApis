@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.MovilModel;
+import com.example.demo.models.MovilModelDTO;
 import com.example.demo.services.impl.MovilServiceImpl;
 
 @RestController
@@ -66,6 +67,13 @@ public class MovilController {
 	@GetMapping("/query2")
 	public List<MovilModel> obtenerMovilPorMarca(@RequestParam("marca") String marca){
 		return  this.impl.obtenerMovilPorMarcaNombre(marca);
+	}
+	
+	@GetMapping("/dto")
+	public ResponseEntity<List<MovilModelDTO>> movilesDTO(){
+		List<MovilModel> moviles = this.impl.consultarMoviles();
+		List<MovilModelDTO> movilesDTO = this.impl.convertirAMovilDTO(moviles);
+		return new ResponseEntity<>(movilesDTO,HttpStatus.OK);
 	}
 	
 	
