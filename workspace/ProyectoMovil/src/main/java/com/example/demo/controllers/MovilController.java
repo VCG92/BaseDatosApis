@@ -82,7 +82,7 @@ public class MovilController {
 	@GetMapping("/filtrar")
     public ResponseEntity<List<MovilModelDTO>> buscarMoviles(
     		@RequestParam(name = "marca",required = false) String nombreMarca,
-    		@RequestParam(name = "precioMin",required = true , defaultValue = "0") Float precioMinimo,
+    		@RequestParam(name = "precioMin",required = false , defaultValue = "0") Float precioMinimo,
     		@RequestParam(name = "precioMax",required = false) Float precioMaximo,
     		@RequestParam(name = "ramMin",required = false) Integer ramMinima,
     		@RequestParam(name = "ramMax",required = false) Integer ramMaxima,
@@ -96,6 +96,7 @@ public class MovilController {
             return ResponseEntity.notFound().build();
         }
     }
+	
 	
 	@GetMapping("/comparar/{modelo1}-{modelo2}")
 	public ResponseEntity<List<MovilModel>>obtenerMovilesPorModelo(@PathVariable("modelo1")String modelo1,@PathVariable("modelo2")String modelo2){

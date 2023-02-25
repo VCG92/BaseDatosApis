@@ -81,6 +81,23 @@ public class MovilServiceImpl{
                 .map(movil -> movil.movilDTO())
                 .collect(Collectors.toList());
 	}
+	
+	
+//	public List<List<MovilModelDTO>> buscarMoviles(MovilFilter filter) {
+//        // Obtener los móviles de la base de datos
+//        List<MovilModel> moviles = this.movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia(
+//            filter.getMarca().equals("any") ? null : filter.getMarca(),
+//            filter.getPrecio().getMin(),
+//            filter.getPrecio().getMax(),
+//            filter.getRam().getMin(),
+//            filter.getRam().getMax(),
+//            filter.isNfc(),
+//            filter.getTecnologia().equals("any") ? null : filter.getTecnologia()
+//        );
+//
+//        // Convertir los móviles a DTO
+//        return moviles.stream().map(movil -> convertirAMovilDTO(moviles)).collect(Collectors.toList());
+//    }
 
 
 	public List<MovilModel> obtenerMovilesPorModelo(List<String> modelo){
@@ -88,16 +105,6 @@ public class MovilServiceImpl{
 	}
 	
 	
-//	public List<MovilModelDTO> getMovilFiltro( MovilFilter movilFilter){
-//		return this.movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia(
-//				movilFilter.getMarca()
-//				, movilFilter.getPrecio().getMin()
-//				, movilFilter.getPrecio().getMax()
-//				, movilFilter.getRam().getMin()
-//				, movilFilter.getRam().getMax()
-//				, movilFilter.isNfc()
-//				, movilFilter.getTecnologia()).stre
-//	}
 	
 	
 	
