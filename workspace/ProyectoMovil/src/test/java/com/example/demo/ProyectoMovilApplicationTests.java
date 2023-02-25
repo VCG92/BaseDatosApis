@@ -20,9 +20,9 @@ class ProyectoMovilApplicationTests {
 	@Test
 	void contextLoads() {
 		MovilModelOM om = new MovilModelOM();
-		MovilModel movil = om.getMovil();
+//		MovilModel movil = om.getMovil();
 		List<MovilModel> moviles = om.getMoviles();  
-		movilRepositoy.save(movil);
+//		movilRepositoy.save(movil);
 		movilRepositoy.saveAll(moviles);
 		
 //		MarcaModel marca = new MarcaModel("Galaxy S5");
