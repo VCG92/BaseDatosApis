@@ -2,15 +2,15 @@ package com.example.demo.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.MarcaModel;
+import com.example.demo.models.MovilFilter;
 import com.example.demo.models.MovilModel;
 import com.example.demo.models.MovilModelDTO;
 import com.example.demo.repositories.MovilRepositoy;
-import com.example.demo.services.MovilService;
 @Service
 public class MovilServiceImpl{
 	
@@ -51,29 +51,55 @@ public class MovilServiceImpl{
 	}
 	
 	
+//	public List<MovilModelDTO> convertirAMovilDTO(List<MovilModel> moviles){
+//		List<MovilModelDTO> dtos = new ArrayList<MovilModelDTO>();
+//		for (MovilModel movil : moviles) {
+//			MovilModelDTO dto = movil.movilDTO();
+//			dtos.add(dto);
+//		}
+//		return dtos;
+//	}
 	public List<MovilModelDTO> convertirAMovilDTO(List<MovilModel> moviles){
-		List<MovilModelDTO> dtos = new ArrayList<MovilModelDTO>();
-		for (MovilModel movil : moviles) {
-			MovilModelDTO dto = movil.movilDTO();
-			dtos.add(dto);
-		}
-		return dtos;
+		return moviles.stream().limit(5).map(movil -> movil.movilDTO()).collect(Collectors.toList());
 	}
 	
+//	public List<MovilModelDTO> buscarMoviles(String nombreMarca, float precioMinimo, float precioMaximo,
+//            int ramMinima, int ramMaxima, boolean tieneNFC, String tecnologiaPantalla){
+//		        List<MovilModel> moviles = movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia
+//		        		(nombreMarca, precioMinimo, precioMaximo, ramMinima, ramMaxima, tieneNFC, tecnologiaPantalla);
+//		        List<MovilModelDTO> movilesDTO = new ArrayList<>();
+//		        for (MovilModel movil : moviles) {
+//		            movilesDTO.add(movil.movilDTO());
+//		        }
+//		        return movilesDTO;
+//		    }
+	
 	public List<MovilModelDTO> buscarMoviles(String nombreMarca, float precioMinimo, float precioMaximo,
-            int ramMinima, int ramMaxima, boolean tieneNFC, String tecnologiaPantalla){
-		        List<MovilModel> moviles = movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia
-		        		(nombreMarca, precioMinimo, precioMaximo, ramMinima, ramMaxima, tieneNFC, tecnologiaPantalla);
-		        List<MovilModelDTO> movilesDTO = new ArrayList<>();
-		        for (MovilModel movil : moviles) {
-		            movilesDTO.add(movil.movilDTO());
-		        }
-		        return movilesDTO;
-		    }
+	        int ramMinima, int ramMaxima, boolean tieneNFC, String tecnologiaPantalla){
+		return movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia(
+                nombreMarca, precioMinimo, precioMaximo, ramMinima, ramMaxima, tieneNFC, tecnologiaPantalla).stream()
+                .map(movil -> movil.movilDTO())
+                .collect(Collectors.toList());
+	}
+
 
 	public List<MovilModel> obtenerMovilesPorModelo(List<String> modelo){
 		return movilRepositoy.findByModeloIn(modelo);
 	}
+	
+	
+//	public List<MovilModelDTO> getMovilFiltro( MovilFilter movilFilter){
+//		return this.movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia(
+//				movilFilter.getMarca()
+//				, movilFilter.getPrecio().getMin()
+//				, movilFilter.getPrecio().getMax()
+//				, movilFilter.getRam().getMin()
+//				, movilFilter.getRam().getMax()
+//				, movilFilter.isNfc()
+//				, movilFilter.getTecnologia()).stre
+//	}
+	
+	
 	
 	}
 
