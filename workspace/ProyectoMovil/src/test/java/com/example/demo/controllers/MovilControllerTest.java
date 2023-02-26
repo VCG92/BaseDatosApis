@@ -9,12 +9,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.example.demo.models.MovilModel;
 import com.example.demo.models.MovilModelDTO;
 import com.example.demo.models.MovilModelOM;
+
+import reactor.core.publisher.Mono;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class MovilControllerTest {
 	
@@ -64,6 +68,9 @@ class MovilControllerTest {
         for (MovilModelDTO movilDTO : response) {
             assertNotNull(movilDTO.getModelo());
             assertNotNull(movilDTO.getMarca());
+            assertNotNull(movilDTO.getNucleos());
+            assertNotNull(movilDTO.getRam());
+            assertNotNull(movilDTO.getAlmacenamiento());
             assertNotNull(movilDTO.getPrecio());
         }
     }
@@ -71,8 +78,34 @@ class MovilControllerTest {
     //Luego verificamos que la respuesta no sea nula ni esté vacía, y que cada elemento de la lista tenga los campos que esperamos.
 
 
+    @Test
+    void testBuscarMoviles() {
+        // Construimos la URL del endpoint y agregamos los parámetros necesarios
+        String url = "/CRUDMovil/filtrar?marca=Al&precioMin=0&precioMax=5000&ramMin=0&ramMax=3000&tecnologia=O";
+        // Realizamos la petición GET a la URL
+        List<MovilModelDTO> response = webClient.get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<MovilModelDTO>>() {})
+                .block();
+        // Verificamos que la respuesta tenga los elementos esperados
+        assertNotNull(response);
+        assertEquals(1, response.size());
+        // Verificamos que los elementos tengan los valores esperados
+        MovilModelDTO movil1 = response.get(0);
+        assertEquals("Alcatel", movil1.getMarca());
+        assertEquals("1s", movil1.getModelo());
+        assertEquals(28, movil1.getRam());
+        assertEquals(795.0f, movil1.getPrecio());
+        assertEquals(27, movil1.getAlmacenamiento());
+        assertEquals(9, movil1.getNucleos());
+    }
+
+    }
 
 
 
 
-}
+
+
+
