@@ -14,13 +14,13 @@ public interface MovilRepositoy extends CrudRepository<MovilModel, String> {
 
 	public abstract List<MovilModel> findByMarcaNombre(String marca);
 
-	public abstract List<MovilModel> findByPrecioBetween(float precioMin, float precioMax);
+	public abstract List<MovilModel> findAllByPrecioBetween(float precioMin, float precioMax);
 
-	public abstract List<MovilModel> findByRamBetween(int precioMin, int precioMax);
+	public abstract List<MovilModel> findAllByRamBetween(int precioMin, int precioMax);
 
-	public abstract List<MovilModel> findByNfc(boolean nfc);
+	public abstract List<MovilModel> findAllByNfc(boolean nfc);
 
-	public abstract List<MovilModel> findByPantallaTecnologia(String tecnologia);
+	public abstract List<MovilModel> findAllByPantallaTecnologia(String tecnologia);
 
 	public abstract List<MovilModel> findByMarcaNombreContainingAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologiaContaining(
 			String nombreMarca, float precioMin, float precioMax, int ramMin, int ramMax, boolean nfc,
