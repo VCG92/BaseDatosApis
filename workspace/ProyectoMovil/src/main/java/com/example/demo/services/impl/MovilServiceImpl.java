@@ -107,16 +107,18 @@ public class MovilServiceImpl{
 		return movilRepositoy.findByModeloIn(modelo);
 	}
 	
-	public List<MovilModelDTO> getMobileFilter(MovilFilter filter){
-	    return movilRepositoy.findAllByPrecioBetween(filter.getPrecio().getMin(), filter.getPrecio().getMax())
+	public List<MovilModelDTO> getMobileFilter(MovilFilter mobilefilter){
+	    List<MovilModelDTO> collect = movilRepositoy.findAllByPrecioBetween(mobilefilter.getPrecio().getMin(), mobilefilter.getPrecio().getMax())
 	            .stream()
-	            .filter((movil) -> filter.getMarca().equals("any") || movil.getMarca().equals(filter.getMarca()))
-	            .filter((movil) -> filter.getRam().getMin() == 0 || movil.getRam() >= filter.getRam().getMin())
-	            .filter((movil) -> filter.getRam().getMax() == 35 || movil.getRam() <= filter.getRam().getMax())
-	            .filter((movil) -> !filter.isNfc() || movil.isNfc())
-	            .filter((movil) -> filter.getTecnologia().equals("any") || movil.getPantalla().getTecnologia().equals(filter.getTecnologia()))
+	            .filter((movil) -> movil.getMarca().getNombre().equals(mobilefilter.getMarca()))
+	            .filter((movil) -> movil.getRam() >= mobilefilter.getRam().getMin())
+	            .filter((movil) -> movil.getRam() <= mobilefilter.getRam().getMax())
+	            .filter((movil) -> movil.isNfc()==mobilefilter.isNfc())
+	            .filter((movil) ->  movil.getPantalla().getTecnologia().equals(mobilefilter.getTecnologia()))
 	            .map(movil -> movil.movilDTO())
 	            .collect(Collectors.toList());
+	    
+	    return collect;
 	}
 
 	}
