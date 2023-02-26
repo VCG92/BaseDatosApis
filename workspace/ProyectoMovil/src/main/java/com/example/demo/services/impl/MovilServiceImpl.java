@@ -76,7 +76,7 @@ public class MovilServiceImpl{
 	
 	public List<MovilModelDTO> buscarMoviles(String nombreMarca, float precioMinimo, float precioMaximo,
 	        int ramMinima, int ramMaxima, boolean tieneNFC, String tecnologiaPantalla){
-		return movilRepositoy.findByMarcaNombreAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologia(
+		return movilRepositoy.findByMarcaNombreContainingAndPrecioBetweenAndRamBetweenAndNfcAndPantallaTecnologiaContaining(
                 nombreMarca, precioMinimo, precioMaximo, ramMinima, ramMaxima, tieneNFC, tecnologiaPantalla).stream()
                 .map(movil -> movil.movilDTO())
                 .collect(Collectors.toList());
