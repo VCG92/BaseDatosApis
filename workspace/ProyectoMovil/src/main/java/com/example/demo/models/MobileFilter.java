@@ -1,19 +1,19 @@
 package com.example.demo.models;
 
-public class MovilFilter {
-	private String marca = "any";
-	private Range<Float> precio = new Range<Float>(0f, 10000f);
-	private Range<Integer> ram = new Range<Integer>(0, 35);
-	private boolean nfc = false;
-	private String tecnologia = "any";
+public class MobileFilter {
+	private String marca ;
+	private Range<Float> precio;
+	private Range<Integer> ram ;
+	private boolean nfc;
+	private String tecnologia;
 	
-	public MovilFilter(String marca, Range<Float> precio, Range<Integer> ram, boolean nfc, String tecnologia) {
+	public MobileFilter(String marca, Range<Float> precio, Range<Integer> ram, boolean nfc, String tecnologia) {
 		super();
-		this.marca = marca;
-		this.precio = precio;
-		this.ram = ram;
-		this.nfc = nfc;
-		this.tecnologia = tecnologia;
+		this.marca = "any";
+		this.precio = new Range<Float>(0f, 10000f);
+		this.ram = new Range<Integer>(0, 100);
+		this.nfc = false;
+		this.tecnologia = "any";
 	}
 
 	public String getMarca() {

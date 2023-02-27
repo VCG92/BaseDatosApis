@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.MovilFilter;
+import com.example.demo.models.MobileFilter;
 import com.example.demo.models.MovilModel;
 import com.example.demo.models.MovilModelDTO;
 import com.example.demo.repositories.MovilRepositoy;
@@ -18,7 +18,7 @@ public class MovilServiceImpl{
 	@Autowired
 	private MovilRepositoy movilRepositoy;
 	
-	private MovilFilter movilFilter;
+	private MobileFilter mobileFilter;
 
 	
 	public List<MovilModel> consultarMoviles() {
@@ -107,14 +107,14 @@ public class MovilServiceImpl{
 		return movilRepositoy.findByModeloIn(modelo);
 	}
 	
-	public List<MovilModelDTO> getMobileFilter(MovilFilter mobilefilter){
+	public List<MovilModelDTO> getMobileFilter(MobileFilter mobilefilter){
 	    List<MovilModelDTO> collect = movilRepositoy.findAllByPrecioBetween(mobilefilter.getPrecio().getMin(), mobilefilter.getPrecio().getMax())
 	            .stream()
 	            .filter((movil) -> movil.getMarca().getNombre().equals(mobilefilter.getMarca()))
 	            .filter((movil) -> movil.getRam() >= mobilefilter.getRam().getMin())
 	            .filter((movil) -> movil.getRam() <= mobilefilter.getRam().getMax())
 	            .filter((movil) -> movil.isNfc()==mobilefilter.isNfc())
-	            .filter((movil) ->  movil.getPantalla().getTecnologia().equals(mobilefilter.getTecnologia()))
+	            .filter((movil) -> movil.getPantalla().getTecnologia().equals(mobilefilter.getTecnologia()))
 	            .map(movil -> movil.movilDTO())
 	            .collect(Collectors.toList());
 	    
@@ -122,9 +122,3 @@ public class MovilServiceImpl{
 	}
 
 	}
-	
-	
-	
-	
-
-

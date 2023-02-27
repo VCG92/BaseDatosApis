@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.models.MovilFilter;
+import com.example.demo.models.MobileFilter;
 import com.example.demo.models.MovilModel;
 import com.example.demo.models.MovilModelDTO;
 import com.example.demo.services.impl.MovilServiceImpl;
@@ -99,7 +99,7 @@ public class MovilController {
     }
 	
 	@PostMapping("/filter")
-    public ResponseEntity<List<MovilModelDTO>> getMovilFilter(@RequestBody MovilFilter filter ) {
+    public ResponseEntity<List<MovilModelDTO>> getMovilFilter(@RequestBody MobileFilter filter ) {
         List<MovilModelDTO> movilesFiltrados = movilServiceImpl.getMobileFilter(filter);
         return ResponseEntity.ok(movilesFiltrados);
     }
